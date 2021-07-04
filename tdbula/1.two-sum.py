@@ -7,10 +7,13 @@
 # @lc code=start
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        for i, v in enumerate(nums):
-            for j, k in enumerate(nums[i+1:]):
-                if v + k == target:
-                    return [i, j]
+        map_file = {}
+        for i, val in enumerate(nums):
+            res = (target - val)
+            # check if result in key and not duplicate
+            if res in map_file and map_file.get(res, -1) != i:
+                return sorted([i, map_file.get(res)])
+            map_file[val] = i
         
 # @lc code=end
 
